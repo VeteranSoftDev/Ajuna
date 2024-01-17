@@ -1,0 +1,9 @@
+# folders
+.*
+!.git
+docker
+docs
+**/target
+
+# files
+*.md

@@ -1,0 +1,49 @@
+[package]
+description = "Ajuna Network pallet used to handle the transformation of Game Assets into an NFT-ready format"
+name        = "pallet-ajuna-nft-staking"
+
+authors.workspace    = true
+edition.workspace    = true
+homepage.workspace   = true
+repository.workspace = true
+version.workspace    = true
+
+[package.metadata.docs.rs]
+targets = [ "x86_64-unknown-linux-gnu" ]
+
+[dependencies]
+# Substrate (wasm)
+frame-benchmarking = { workspace = true, optional = true }
+frame-support      = { workspace = true }
+frame-system       = { workspace = true }
+parity-scale-codec = { workspace = true, features = [ "derive", "max-encoded-len" ] }
+scale-info         = { workspace = true, features = [ "derive" ] }
+sp-core            = { workspace = true }
+sp-io              = { workspace = true }
+sp-runtime         = { workspace = true }
+sp-std             = { workspace = true }
+
+[dev-dependencies]
+pallet-balances = { workspace = true }
+pallet-nfts     = { workspace = true }
+
+[features]
+default = [ "std" ]
+runtime-benchmarks = [
+    "frame-benchmarking",
+    "pallet-nfts/runtime-benchmarks",
+]
+std = [
+    "parity-scale-codec/std",
+    "scale-info/std",
+    "frame-benchmarking/std",
+    "frame-support/std",
+    "frame-system/std",
+    "pallet-nfts/std",
+    "pallet-balances/std",
+    "sp-core/std",
+    "sp-runtime/std",
+    "sp-std/std",
+    "sp-io/std",
+]
+try-runtime = [ "frame-support/try-runtime" ]

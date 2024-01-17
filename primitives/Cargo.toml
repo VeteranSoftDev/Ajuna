@@ -1,0 +1,28 @@
+[package]
+name = "ajuna-primitives"
+
+authors.workspace    = true
+edition.workspace    = true
+homepage.workspace   = true
+repository.workspace = true
+version.workspace    = true
+
+[dependencies]
+# Substrate
+parachains-common   = { workspace = true }
+sp-core             = { workspace = true }
+sp-runtime          = { workspace = true }
+staging-xcm-builder = { workspace = true }
+
+[features]
+default = [ "std" ]
+std = [
+    "parachains-common/std",
+    "sp-core/std",
+    "sp-runtime/std",
+    "staging-xcm-builder/std",
+]
+runtime-benchmarks = [
+    "sp-runtime/runtime-benchmarks",
+    "staging-xcm-builder/runtime-benchmarks",
+]

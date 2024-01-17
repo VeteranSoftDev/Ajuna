@@ -1,0 +1,56 @@
+[package]
+description = "Ajuna Network pallet used to play Awesome Avatars"
+name        = "pallet-ajuna-awesome-avatars"
+
+authors.workspace    = true
+edition.workspace    = true
+homepage.workspace   = true
+repository.workspace = true
+version.workspace    = true
+
+[package.metadata.docs.rs]
+targets = [ "x86_64-unknown-linux-gnu" ]
+
+[dependencies]
+# General (wasm)
+log = { workspace = true }
+hex = { workspace = true, features = ["alloc"] }
+
+# Substrate (wasm)
+frame-support      = { workspace = true }
+frame-system       = { workspace = true }
+parity-scale-codec = { workspace = true, features = [ "derive", "max-encoded-len" ] }
+scale-info         = { workspace = true, features = [ "derive" ] }
+sp-io              = { workspace = true }
+sp-runtime         = { workspace = true }
+sp-std             = { workspace = true }
+
+# Ajuna
+pallet-ajuna-nft-transfer = { workspace = true }
+
+[dev-dependencies]
+pallet-balances                            = { workspace = true }
+pallet-insecure-randomness-collective-flip = { workspace = true }
+pallet-nfts                                = { workspace = true }
+sp-core                                    = { workspace = true }
+
+[features]
+default = [ "std" ]
+runtime-benchmarks = [
+    "pallet-nfts/runtime-benchmarks",
+]
+std = [
+    "parity-scale-codec/std",
+    "scale-info/std",
+    "sp-io/std",
+    "hex/std",
+    "pallet-ajuna-nft-transfer/std",
+    "pallet-balances/std",
+    "pallet-nfts/std",
+    "frame-support/std",
+    "frame-system/std",
+    "sp-runtime/std",
+    "sp-std/std",
+    "log/std",
+]
+try-runtime = [ "frame-support/try-runtime" ]

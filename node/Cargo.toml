@@ -1,0 +1,39 @@
+[package]
+name = "ajuna-node"
+
+authors.workspace    = true
+edition.workspace    = true
+homepage.workspace   = true
+repository.workspace = true
+version.workspace    = true
+
+[[bin]]
+name              = "ajuna-solo"
+path              = "src/solo.rs"
+required-features = [ "solo" ]
+
+[[bin]]
+name              = "bajun-para"
+path              = "src/bajun.rs"
+required-features = [ "bajun" ]
+
+[[bin]]
+name              = "ajuna-para"
+path              = "src/ajuna.rs"
+required-features = [ "ajuna" ]
+
+[dependencies]
+# Ajuna
+ajuna-cli     = { workspace = true }
+ajuna-service = { workspace = true }
+
+[features]
+default = [ "solo" ]
+
+ajuna = [ "ajuna-cli/ajuna", "ajuna-service/ajuna" ]
+bajun = [ "ajuna-cli/bajun", "ajuna-service/bajun" ]
+solo  = [ "ajuna-cli/solo", "ajuna-service/solo" ]
+
+kusama-native   = [ "ajuna-cli/kusama-native", "ajuna-service/kusama-native" ]
+polkadot-native = [ "ajuna-cli/polkadot-native", "ajuna-service/polkadot-native" ]
+rococo-native   = [ "ajuna-cli/rococo-native", "ajuna-service/rococo-native" ]
